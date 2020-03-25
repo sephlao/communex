@@ -33,8 +33,9 @@ h2 {
 }
 
 svg {
-    width: 1em;
-    height: 1em;
+    width: 1.175rem;
+    height: 1.175rem;
+    color: var(--col-tertiary);
 }
 
 img {
@@ -154,12 +155,6 @@ img {
 .text-input button {
     background: none;
     border: none;
-}
-
-.text-input button svg {
-    width: 1rem;
-    height: 1rem;
-    color: var(--col-tertiary);
 }
 
 @media screen and (min-width:500px) {
