@@ -39,6 +39,14 @@ const App = () => {
       blanditiis neque voluptate`
     },
     {
+      sender: "Venice",
+      imgUrl:
+        "https://images.unsplash.com/photo-1532910404247-7ee9488d7292?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=282&q=80",
+      message: `Voluptas
+      ratione officia pariatur voluptatibus perspiciatis provident, nam
+      labore? Beatae quis harum illum?`
+    },
+    {
       sender: "You", // will serve as indicator for now
       imgUrl:
         "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=334&q=80",

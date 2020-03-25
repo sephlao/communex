@@ -65,6 +65,8 @@ img {
 }
 
 .app {
+    display: flex;
+    flex-direction: column;
     padding: 1.125em;
     min-height: calc(100vh - 10em);
     overflow-x: scroll;
