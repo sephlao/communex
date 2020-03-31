@@ -29,12 +29,13 @@ io.on("connection", socket => {
 
   socket.on("sendMessage", (message, callbackfn) => {
     const user = getUser(socket.id);
-    console.log(user.channel);
+    console.log(user, user.channel);
     io.to(user.channel).emit("message", { user: user.name, text: message });
     callbackfn();
   });
 
   socket.on("disconnect", () => {
+    removeUser(socket.id);
     console.log("a user disconnected...");
   });
 });
