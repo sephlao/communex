@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import queryString from "query-string";
 import io from "socket.io-client";
 
+import TopBar from "./TopBar";
+
 let socket;
 const SOCKETSERVER = "http://localhost:3001";
 
@@ -36,20 +38,20 @@ const Chat = ({ location }) => {
 
   const sendMessage = e => {
     e.preventDefault();
-
     if (message) socket.emit("sendMessage", message, () => setMessage(""));
   };
 
-  console.log(message, messages);
-
   return (
-    <div>
-      <input
-        value={message}
-        onChange={({ target }) => setMessage(target.value)}
-        onKeyPress={e => e.key === "Enter" && sendMessage(e)}
-      />
-    </div>
+    <>
+      <TopBar channel={channel} />
+      <main>
+        <input
+          value={message}
+          onChange={({ target }) => setMessage(target.value)}
+          onKeyPress={e => e.key === "Enter" && sendMessage(e)}
+        />
+      </main>
+    </>
   );
 };
 
