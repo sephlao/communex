@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Input from "./Input";
 import styled from "styled-components";
 
@@ -19,13 +20,29 @@ const StyledButton = styled.button`
 `;
 
 export default () => {
-  const handleSubmit = e => {
-    e.preventDefault();
-  };
+  const [name, setName] = useState("");
+  const [channel, setChannel] = useState("");
+
+  const handleSubmit = e => (!name || !channel) && e.preventDefault();
+
   return (
     <StyledForm onSubmit={handleSubmit}>
-      <Input type="text" placeholder="Name" />
-      <StyledButton>Join</StyledButton>
+      <Input
+        type="text"
+        placeholder="Name"
+        onChange={({ target }) => setName(target.value)}
+      />
+      <Input
+        type="text"
+        placeholder="Channel"
+        onChange={({ target }) => setChannel(target.value)}
+      />
+      <Link
+        onClick={e => (!name || !channel) && e.preventDefault()}
+        to={`/chat?name=${name}&channel=${channel}`}
+      >
+        <StyledButton>Join</StyledButton>
+      </Link>
     </StyledForm>
   );
 };
