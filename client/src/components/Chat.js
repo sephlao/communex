@@ -6,7 +6,7 @@ import TopBar from "./TopBar";
 import ChatBox from "./ChatBox";
 
 const Chat = ({ location }) => {
-  const [, setName] = useState("");
+  const [name, setName] = useState("");
   const [channel, setChannel] = useState("");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
@@ -44,11 +44,11 @@ const Chat = ({ location }) => {
       socket.current.emit("sendMessage", message, () => setMessage(""));
   };
 
-  console.log(message, messages);
   return (
     <>
       <TopBar channel={channel} />
       <ChatBox
+        currentUser={name}
         messages={messages}
         formProps={{ message, setMessage, sendMessage }}
       />

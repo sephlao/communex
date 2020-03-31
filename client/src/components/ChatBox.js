@@ -6,12 +6,15 @@ import { SendForm } from "./SendForm";
 
 const StledChatBoxSection = styled.section`
   background-color: white;
+  display: grid;
+  grid-template-rows: auto 4em;
+  min-height: calc(100vh - 3.5em);
 `;
 
-const ChatBox = ({ messages, formProps }) => {
+const ChatBox = ({ currentUser, messages, formProps }) => {
   return (
     <StledChatBoxSection>
-      <MessageList messages={messages} />
+      <MessageList messages={messages} currentUser={currentUser} />
       <SendForm {...formProps} />
     </StledChatBoxSection>
   );

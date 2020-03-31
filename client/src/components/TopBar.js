@@ -5,6 +5,7 @@ import Icon from "./Icon";
 const StyledSection = styled.section`
   background-color: white;
   padding: 0.5em 1em;
+  border-bottom: 1px solid gainsboro;
   ul {
     list-style: none;
     padding: 0;
