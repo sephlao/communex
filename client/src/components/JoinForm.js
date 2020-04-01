@@ -4,6 +4,8 @@ import Input from "./Input";
 import styled from "styled-components";
 import io from "socket.io-client";
 
+import { SERVERURL } from "../config";
+
 const StyledForm = styled.form`
   /* margin: 1em 0; */
   p.error {
@@ -38,15 +40,13 @@ export default () => {
   const [channel, setChannel] = useState("");
   const [error, setError] = useState("");
   const socket = useRef(null);
-  const SOCKETSERVER = useRef("http://localhost:3001");
   const history = useHistory();
 
   const handleSubmit = e => {
     e.preventDefault();
     if (name && channel) {
-      socket.current = io(SOCKETSERVER.current);
+      socket.current = io(SERVERURL);
       socket.current.emit("checkUser", { name, channel }, error => {
-        // to do handle callback
         if (error) setError(error);
         else history.push(`/chat?name=${name}&channel=${channel}`);
       });

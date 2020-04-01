@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import queryString from "query-string";
 import io from "socket.io-client";
-
+import { SERVERURL } from "../config";
 import TopBar from "./TopBar";
 import ChatBox from "./ChatBox";
 
@@ -11,10 +11,9 @@ const Chat = ({ location }) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const socket = useRef(null);
-  const SOCKETSERVER = useRef("http://localhost:3001");
   useEffect(() => {
     const { name, channel } = queryString.parse(location.search);
-    socket.current = io(SOCKETSERVER.current);
+    socket.current = io(SERVERURL);
 
     setName(name);
     setChannel(channel);
