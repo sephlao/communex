@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Icon from "./Icon";
+import { Link } from "react-router-dom";
 
 const StyledSection = styled.section`
   background-color: #3f3d56;
@@ -30,7 +31,9 @@ export default ({ channel }) => {
         </li>
         <li>{channel}</li>
         <li>
-          <Icon type="leave" />
+          <Link to="/">
+            <Icon type="leave" />
+          </Link>
         </li>
       </ul>
     </StyledSection>
