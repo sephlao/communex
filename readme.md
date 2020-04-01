@@ -2,6 +2,8 @@
 
 ## Simple instant messaging application using React, Socket.io and Express
 
+![](app-preview.gif)
+
 ### Client side
 
 Tools and technology
