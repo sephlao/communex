@@ -4,8 +4,8 @@ import styled from "styled-components";
 
 const StyledDiv = styled.div`
   display: flex;
-  margin: auto 0.5em 0.5em 1em;
   flex-direction: column;
+  justify-content: flex-end;
 `;
 
 const MessageList = ({ messages, currentUser }) => {

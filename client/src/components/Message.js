@@ -2,33 +2,36 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledMessageDiv = styled.div`
-  margin: 0.5em 1em;
-  display: grid;
-  grid-template-areas: "name msg msg msg";
-  grid-template-columns: 2em 1fr;
+  margin: 0.5em 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: self-start;
   p {
-    background-color: #f8f8f8;
-    padding: 0.75em;
-    border-radius: 6px 6px 6px 0px;
-    grid-area: msg;
-    margin-bottom: 0.75em;
-    width: 100%;
+    background-color: #f2f4fa;
+    padding: 1.25em;
+    border-radius: 8px 8px 8px 0px;
+    margin-bottom: 0.25em;
+    display: inline-block;
   }
 
   small {
     font-size: 0.75em;
     grid-area: name;
-    align-self: end;
+    align-self: flex-start;
   }
 
   &.yours {
     grid-template-areas: "msg msg msg name";
     grid-template-columns: 1fr 2em;
-
+    align-items: self-end;
     p {
-      background-color: darkslateblue;
-      border-radius: 6px 6px 0px 6px;
-      color: white;
+      background-color: #e9f8ff;
+      border-radius: 8px 8px 0px 8px;
+      color: #3f3d56;
+    }
+
+    small {
+      align-self: flex-end;
     }
   }
 `;

@@ -31,8 +31,6 @@ const StyledChatInput = styled.input`
   }
 `;
 
-const StyledSendButton = styled.button``;
-
 export const SendForm = ({ message, setMessage, sendMessage }) => {
   return (
     <StyledSendForm onSubmit={sendMessage}>
