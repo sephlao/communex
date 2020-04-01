@@ -34,6 +34,16 @@ io.on("connection", socket => {
     callbackfn();
   });
 
+  socket.on("checkUser", ({ name, channel }, callbackfn) => {
+    const userExist = getUsersInRoom(channel).find(u => u.name === name);
+    if (userExist) {
+      const errMsg = `${name} already exist in ${channel}. Please try another username.`;
+      console.error(errMsg);
+      callbackfn(errMsg);
+    }
+    callbackfn();
+  });
+
   socket.on("disconnect", () => {
     removeUser(socket.id);
     console.log("a user disconnected...");

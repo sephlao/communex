@@ -1,10 +1,19 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useRef } from "react";
+import { useHistory } from "react-router-dom";
 import Input from "./Input";
 import styled from "styled-components";
+import io from "socket.io-client";
 
 const StyledForm = styled.form`
   /* margin: 1em 0; */
+  p.error {
+    background-color: #ffe9e9;
+    padding: 1em;
+  }
+
+  input.error {
+    border-bottom: 2px solid #ffe9e9;
+  }
 `;
 
 const StyledButton = styled.button`
@@ -27,14 +36,30 @@ const StyledButton = styled.button`
 export default () => {
   const [name, setName] = useState("");
   const [channel, setChannel] = useState("");
+  const [error, setError] = useState("");
+  const socket = useRef(null);
+  const SOCKETSERVER = useRef("http://localhost:3001");
+  const history = useHistory();
 
-  const handleSubmit = e => (!name || !channel) && e.preventDefault();
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (name && channel) {
+      socket.current = io(SOCKETSERVER.current);
+      socket.current.emit("checkUser", { name, channel }, error => {
+        // to do handle callback
+        if (error) setError(error);
+        else history.push(`/chat?name=${name}&channel=${channel}`);
+      });
+    }
+  };
 
   return (
     <StyledForm onSubmit={handleSubmit}>
+      {error && <p className="error">{error}</p>}
       <Input
         type="text"
-        placeholder="Name"
+        placeholder="Username"
+        className={error ? "error" : ""}
         onChange={({ target }) => setName(target.value)}
       />
       <Input
@@ -42,12 +67,9 @@ export default () => {
         placeholder="Channel"
         onChange={({ target }) => setChannel(target.value)}
       />
-      <Link
-        onClick={e => (!name || !channel) && e.preventDefault()}
-        to={`/chat?name=${name}&channel=${channel}`}
-      >
-        <StyledButton>Join</StyledButton>
-      </Link>
+      <StyledButton type="submit" onClick={handleSubmit}>
+        Join
+      </StyledButton>
     </StyledForm>
   );
 };
