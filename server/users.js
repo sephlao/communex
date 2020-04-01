@@ -4,7 +4,8 @@ const addUser = ({ id, name, channel }) => {
   const chnl = channel.trim().toLowerCase();
   const checkExisting = users.find(u => u.channel === chnl && u.name === name);
 
-  if (checkExisting) return { error: `${name} already exist in ${channel}` };
+  if (checkExisting || name === "@bot")
+    return { error: `${name} already exist in ${channel}` };
 
   const user = { id, name, channel: chnl };
   users.push(user);
