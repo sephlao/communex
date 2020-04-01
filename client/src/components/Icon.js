@@ -8,6 +8,7 @@ const StyledIcon = styled.button`
   outline: none;
   padding: 0;
   margin: 0;
+  color: #fcfeff;
 `;
 
 const Menu = () => (

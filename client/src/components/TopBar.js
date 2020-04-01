@@ -3,7 +3,8 @@ import styled from "styled-components";
 import Icon from "./Icon";
 
 const StyledSection = styled.section`
-  background-color: white;
+  background-color: #3f3d56;
+  color: #fcfeff;
   padding: 0.5em 1em;
   border-bottom: 1px solid gainsboro;
   ul {
@@ -14,8 +15,8 @@ const StyledSection = styled.section`
     align-items: center;
     margin: 0.5em;
     li:nth-child(2) {
-      text-transform: uppercase;
       font-weight: bold;
+      font-size: 1.125em;
     }
   }
 `;
