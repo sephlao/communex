@@ -4,19 +4,24 @@ import Input from "./Input";
 import styled from "styled-components";
 
 const StyledForm = styled.form`
-  margin: 1em 0;
+  /* margin: 1em 0; */
 `;
 
 const StyledButton = styled.button`
   width: 100%;
   padding: 0.5em;
   border: none;
-  border-radius: 0.5em;
-  font-size: 1em;
+  border-radius: 0.25em;
+  font-size: 1.25em;
   font-weight: bold;
   text-transform: uppercase;
-  background: #6f3d8b;
+  background: #3f3d56;
   color: white;
+  margin-top: 2.5em;
+  :active {
+    scale: 1.1;
+    transition: scale 300ms ease;
+  }
 `;
 
 export default () => {

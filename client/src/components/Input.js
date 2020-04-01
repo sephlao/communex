@@ -5,12 +5,20 @@ const StyledInput = styled.input`
   padding: 0.5em;
   width: 100%;
   box-sizing: border-box;
-  border-radius: 0.5em;
   background: none;
   outline: none;
-  border: 1px solid #aeaeae;
-  margin: 0.5em 0;
   font-size: 1em;
+  border: none;
+  border-bottom: 2px solid #e9f8ff;
+  color: #3f3d56;
+  margin: 0.5em 0;
+  ::placeholder {
+    color: rgba(63, 61, 86, 0.8);
+  }
+  :focus {
+    border-bottom: 2px solid #00b0ff;
+    transition: border-bottom 300ms ease;
+  }
 `;
 
 export default props => <StyledInput {...props} />;
