@@ -67,8 +67,12 @@ const Send = () => (
 
 const Icons = { leave: <Leave />, menu: <Menu />, send: <Send /> };
 
-const IconContainer = ({ type, btnContainerType = "button" }) => {
-  return <StyledIcon type={btnContainerType}>{Icons[type]}</StyledIcon>;
+const IconContainer = ({ type, btnContainerType = "button", ...rest }) => {
+  return (
+    <StyledIcon {...rest} type={btnContainerType}>
+      {Icons[type]}
+    </StyledIcon>
+  );
 };
 
 export default IconContainer;
