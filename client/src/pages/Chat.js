@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import queryString from "query-string";
 import io from "socket.io-client";
 import { SERVERURL } from "../config";
-import TopBar from "./TopBar";
-import ChatBox from "./ChatBox";
+import TopBar from "../components/TopBar";
+import ChatBox from "../components/ChatBox";
 
 const Chat = ({ location }) => {
   const [name, setName] = useState("");
@@ -18,7 +18,7 @@ const Chat = ({ location }) => {
     setName(name);
     setChannel(channel);
 
-    socket.current.emit("join", { name, channel }, error => {
+    socket.current.emit("join", { name, channel }, (error) => {
       // to do handle callback
       if (error) console.error(error);
     });
@@ -32,12 +32,12 @@ const Chat = ({ location }) => {
   }, [location.search]);
 
   useEffect(() => {
-    socket.current.on("message", message => {
+    socket.current.on("message", (message) => {
       setMessages([...messages, message]);
     });
   }, [messages]);
 
-  const sendMessage = e => {
+  const sendMessage = (e) => {
     e.preventDefault();
     if (message)
       socket.current.emit("sendMessage", message, () => setMessage(""));
