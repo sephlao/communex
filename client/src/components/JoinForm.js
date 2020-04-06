@@ -56,7 +56,12 @@ export default () => {
         else history.push(`/chat?name=${name}&channel=${channel}`);
       });
     }
-    return () => socket.current !== null && socket.current.disconnect(true);
+    return () => {
+      if (socket.current) {
+        socket.current.off();
+        socket.current = null;
+      }
+    };
   }, [name, channel, isSubmitted, socket, history]);
 
   return (
