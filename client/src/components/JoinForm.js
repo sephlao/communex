@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Input from "./Input";
 import styled from "styled-components";
@@ -39,19 +39,30 @@ export default () => {
   const [name, setName] = useState("");
   const [channel, setChannel] = useState("");
   const [error, setError] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const socket = useRef(null);
   const history = useHistory();
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (name && channel) {
+    setIsSubmitted(true);
+  };
+
+  useEffect(() => {
+    if (name && channel && isSubmitted) {
       socket.current = io(SERVERURL);
-      socket.current.emit("checkUser", { name, channel }, error => {
+      socket.current.emit("checkUser", { name, channel }, (error) => {
         if (error) setError(error);
         else history.push(`/chat?name=${name}&channel=${channel}`);
       });
     }
-  };
+    return () => {
+      if (socket.current) {
+        socket.current.off();
+        socket.current = null;
+      }
+    };
+  }, [name, channel, isSubmitted, socket, history]);
 
   return (
     <StyledForm onSubmit={handleSubmit}>

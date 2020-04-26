@@ -38,9 +38,9 @@ export const SendForm = ({ message, setMessage, sendMessage }) => {
         value={message}
         placeholder="Aa"
         onChange={({ target }) => setMessage(target.value)}
-        onKeyPress={e => e.key === "Enter" && sendMessage(e)}
+        onKeyPress={(e) => e.key === "Enter" && sendMessage(e)}
       />
-      <Icon type="send" btnContainerType="submit" />
+      <Icon type="send" btnContainerType="submit" onClick={sendMessage} />
     </StyledSendForm>
   );
 };

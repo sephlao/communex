@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import "./index.css";
 
-import Join from "./components/Join";
-import Chat from "./components/Chat";
+import Join from "./pages/Join";
+import Chat from "./pages/Chat";
 
 const GlobalStyle = createGlobalStyle`
   body {

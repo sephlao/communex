@@ -2,14 +2,16 @@ import React, { useState, useEffect, useRef } from "react";
 import queryString from "query-string";
 import io from "socket.io-client";
 import { SERVERURL } from "../config";
-import TopBar from "./TopBar";
-import ChatBox from "./ChatBox";
+import TopBar from "../components/TopBar";
+import ChatBox from "../components/ChatBox";
+import Sidebar from "../components/Sidebar";
 
 const Chat = ({ location }) => {
   const [name, setName] = useState("");
   const [channel, setChannel] = useState("");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const [sidebarShow, setSidebarShow] = useState(false);
   const socket = useRef(null);
   useEffect(() => {
     const { name, channel } = queryString.parse(location.search);
@@ -18,7 +20,7 @@ const Chat = ({ location }) => {
     setName(name);
     setChannel(channel);
 
-    socket.current.emit("join", { name, channel }, error => {
+    socket.current.emit("join", { name, channel }, (error) => {
       // to do handle callback
       if (error) console.error(error);
     });
@@ -32,35 +34,30 @@ const Chat = ({ location }) => {
   }, [location.search]);
 
   useEffect(() => {
-    socket.current.on("message", message => {
+    socket.current.on("message", (message) => {
       setMessages([...messages, message]);
     });
   }, [messages]);
 
-  const sendMessage = e => {
+  const sendMessage = (e) => {
     e.preventDefault();
     if (message)
       socket.current.emit("sendMessage", message, () => setMessage(""));
   };
 
+  const handleSidebarToggle = () => {
+    setSidebarShow(!sidebarShow);
+  };
+
   return (
     <>
-      <TopBar channel={channel} />
+      <TopBar channel={channel} toggleSidebar={handleSidebarToggle} />
+      <Sidebar show={sidebarShow} />
       <ChatBox
         currentUser={name}
         messages={messages}
         formProps={{ message, setMessage, sendMessage }}
       />
-      {/* <main>
-        <div></div>
-        <div>
-          <input
-            value={message}
-            onChange={({ target }) => setMessage(target.value)}
-            onKeyPress={e => e.key === "Enter" && sendMessage(e)}
-          />
-        </div>
-      </main> */}
     </>
   );
 };

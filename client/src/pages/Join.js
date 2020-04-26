@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import JoinForm from "./JoinForm";
+import JoinForm from "../components/JoinForm";
 import JoinFormImg from "../img/joinform.svg";
 
 const JoinContainer = styled.section`

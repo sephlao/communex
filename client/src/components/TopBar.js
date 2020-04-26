@@ -22,20 +22,20 @@ const StyledSection = styled.section`
   }
 `;
 
-export default ({ channel }) => {
-  return (
-    <StyledSection>
-      <ul>
-        <li>
-          <Icon type="menu" />
-        </li>
-        <li>{channel}</li>
-        <li>
-          <Link to="/">
-            <Icon type="leave" />
-          </Link>
-        </li>
-      </ul>
-    </StyledSection>
-  );
-};
+const TopBar = ({ channel, toggleSidebar }) => (
+  <StyledSection>
+    <ul>
+      <li>
+        <Icon type="menu" onClick={toggleSidebar} />
+      </li>
+      <li>{channel}</li>
+      <li>
+        <Link to="/">
+          <Icon type="leave" />
+        </Link>
+      </li>
+    </ul>
+  </StyledSection>
+);
+
+export default TopBar;
