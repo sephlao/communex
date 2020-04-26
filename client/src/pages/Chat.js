@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, createContext } from "react";
 import queryString from "query-string";
 import io from "socket.io-client";
 import { SERVERURL } from "../config";
 import TopBar from "../components/TopBar";
 import ChatBox from "../components/ChatBox";
 import Sidebar from "../components/Sidebar";
+
+export const MessagesStore = createContext("");
 
 const Chat = ({ location }) => {
   const [name, setName] = useState("");
@@ -53,11 +55,12 @@ const Chat = ({ location }) => {
     <>
       <TopBar channel={channel} toggleSidebar={handleSidebarToggle} />
       <Sidebar show={sidebarShow} />
-      <ChatBox
-        currentUser={name}
-        messages={messages}
-        formProps={{ message, setMessage, sendMessage }}
-      />
+      <MessagesStore.Provider value={messages}>
+        <ChatBox
+          currentUser={name}
+          formProps={{ message, setMessage, sendMessage }}
+        />
+      </MessagesStore.Provider>
     </>
   );
 };

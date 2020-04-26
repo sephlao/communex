@@ -11,10 +11,10 @@ const StledChatBoxSection = styled.section`
   min-height: calc(100vh - 3.5em);
 `;
 
-const ChatBox = ({ currentUser, messages, formProps }) => {
+const ChatBox = ({ currentUser, formProps }) => {
   return (
     <StledChatBoxSection>
-      <MessageList messages={messages} currentUser={currentUser} />
+      <MessageList currentUser={currentUser} />
       <SendForm {...formProps} />
     </StledChatBoxSection>
   );
