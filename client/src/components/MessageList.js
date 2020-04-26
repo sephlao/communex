@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import Message from "./Message";
 import styled from "styled-components";
+import { MessagesStore } from "../pages/Chat";
 
 const StyledDiv = styled.div`
   display: flex;
@@ -8,7 +9,8 @@ const StyledDiv = styled.div`
   justify-content: flex-end;
 `;
 
-const MessageList = ({ messages, currentUser }) => {
+const MessageList = ({ currentUser }) => {
+  const messages = useContext(MessagesStore);
   return (
     <StyledDiv>
       {messages.map((m, i) => (
