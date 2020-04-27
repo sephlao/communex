@@ -1,4 +1,4 @@
-# Communex
+# Communex ✅ READY TO GRADE
 
 ## Simple instant messaging application using React, Socket.io and Express
 
